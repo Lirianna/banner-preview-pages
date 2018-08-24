@@ -1,0 +1,17 @@
+{
+    "version": "1.0",
+    "uniqueId": "bued6d76ad1b34074921b999660eaf8d9e",
+    "title": "Forsvaret",
+    "description": "Adform Standard banner; Version 1.0",
+    "width": 930,
+    "height": 180,
+    "events": {
+        "enabled": 0,
+        "list": {
+        }
+    },
+    "clicktags": {
+        "clickTAG": "http:\/\/www.adform.com"
+    },
+    "source": "index.html"
+}

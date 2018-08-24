@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Preview page title goes here -->
+	<title>Preview</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+	<script src="https://use.fontawesome.com/b11164cf3c.js"></script>
+	<meta charset="utf-8">
+</head>
+<body>
+	<style type="text/css">
+	body {
+		font-family: Verdana,sans-serif;
+		background: #eaeaea;
+		margin: 0;
+		-webkit-touch-callout: none; /* iOS Safari */
+			-webkit-user-select: none; /* Safari */
+			 -khtml-user-select: none; /* Konqueror HTML */
+				 -moz-user-select: none; /* Firefox */
+					-ms-user-select: none; /* Internet Explorer/Edge */
+							user-select: none; /* Non-prefixed version, currently
+																		supported by Chrome and Opera */
+	}
+	h2 {
+		position: absolute;
+		display: block;
+		font-size: 17px;
+		color: #CCC;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		margin: 0;
+	}
+	h3 {
+		margin: 0;
+		padding: 5px;
+		border-bottom: 2px solid #eaeaea;
+		font-size: 17px;
+		text-align: center;
+		color: #777;
+		cursor: default;
+		height: 21px;
+	}
+	.logo {
+		position: absolute;
+		left: 50%;
+		top: 4px;
+		transform: translateX(-50%);
+		width: 110px;
+	}
+	.nav-wrapper {
+		position: fixed;
+		background: #FFF;
+		width: 276px;
+		top: 0;
+		right: 0;
+		z-index: 5;
+	}
+	.close {
+		position: absolute;
+		top: -2px;
+		left: -33px;
+		width: 31px;
+		height: 31px;
+		cursor: pointer;
+		background: #FFF;
+		border: 2px solid #eaeaea;
+		border-right: 0px;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.close i.fa {
+		position: absolute;
+		top: 1px;
+		left: 5px;
+		font-size: 30px;
+		line-height: 30px;
+		width: 24px;
+		text-align: center;
+		color: #777;
+	}
+	.close:hover {
+		background: #e1005d;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.close:hover i.fa {
+		color: #FFF;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.close.closed {
+		background: #e1005d;
+	}
+	.close.closed i.fa {
+		color: #FFF;
+	}
+	.close-tooltip span {
+		position: absolute;
+		top: 0px;
+		left: -115px;
+		height: 31px;
+		line-height: 31px;
+		padding: 0 10px;
+		background: #FFF;
+		color: #CCC;
+		font-size: 14px;
+		cursor: default;
+		opacity: 0;
+		visibility: hidden;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.close:hover .close-tooltip span {
+		opacity: 1;
+		visibility: visible;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+		-webkit-animation: jumpingTooltip 1s ease-in-out;
+				animation: jumpingTooltip 1s ease-in-out;
+				animation-iteration-count: 1;
+	}
+	@-webkit-keyframes jumpingTooltip {
+		0%, 100% {
+			left: -115px;
+		}
+		50% {
+			left: -103px;
+		}
+	}
+
+	@keyframes jumpingTooltip {
+		0%, 100% {
+			left: -115px;
+		}
+		50% {
+			left: -103px;
+		}
+	}
+	.nav {
+		position: relative;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+	.nav-head {
+		position: relative;
+		text-align: center;
+		font-size: 15px;
+		font-weight: bold;
+		border: 1px solid #eaeaea;
+		margin: 5px;
+		padding: 10px 0;
+		color: #555;
+		cursor: pointer;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.nav-head:hover {
+		background: #eaeaea;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.nav-head.disabled {
+		pointer-events: none;
+		color: #999;
+		background: #F1F1F1;
+	}
+	.nav-lists a:last-child {
+		margin-bottom: 5px;
+	}
+	.nav-lists:last-child a:last-child {
+		margin-bottom: 5px;
+		border-bottom: 1px solid #eaeaea;
+	}
+	.nav-lists:last-child a:last-child:hover {
+		margin-bottom: 5px;
+		border-bottom: 1px solid #e1005d;
+	}
+	.nav a {
+		position: relative;
+		display: block;
+		text-align: center;
+		padding: 10px 0;
+		margin: 0 5px;
+		text-decoration: none;
+		color: #777;
+		font-size: 15px;
+		font-weight: bold;
+		border-top: 1px solid transparent;
+		border-left: 1px solid transparent;
+		border-right: 1px solid transparent;
+		border-bottom: 1px solid #eaeaea;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.nav a.active {
+		background: #eaeaea;
+		color: #e1005d;
+		border-top: 1px solid transparent;
+		border-left: 1px solid transparent;
+		border-right: 1px solid transparent;
+		border-bottom: 1px solid #eaeaea;
+	}
+	.nav a:hover {
+		background: #e1005d;
+		color: #FFF;
+		border: 1px solid #e1005d;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.nav-head i.fa {
+		position: absolute;
+		left: 10px;
+		top: 10px;
+		font-size: 20px;
+		-webkit-transition: all 0.4s ease;
+		transition: all 0.4s ease;
+	}
+	.nav-head:hover i.fa {
+		color: #e1005d !important;
+	}
+	.heading p {
+		color: #555;
+	}
+	/* so the banners would be on top of the advice */
+	.banners {
+		position: relative;
+		display: block;
+		z-index: 1;
+	}
+	/* hiding the menu options */
+	.nav-lists {
+		display: none;
+	}
+	.loading {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background: #eaeaea;
+		z-index: 2;
+		display: none;
+	}
+	.loading h2 {
+		margin-top: 30px;
+	}
+	/* loading animation */
+	.sk-cube-grid {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 60px;
+		height: 60px;
+		margin-top: -40px;
+		transform: translate(-50%, -50%);
+	}
+	.sk-cube-grid .sk-cube {
+		width: 33%;
+		height: 33%;
+		background-color: #e1005d;
+		float: left;
+		-webkit-animation: sk-cubeGridScaleDelay 1.5s infinite ease-in-out;
+				animation: sk-cubeGridScaleDelay 1.5s infinite ease-in-out;
+	}
+	.sk-cube-grid .sk-cube1 {
+		-webkit-animation-delay: 0s;
+						animation-delay: 0s; }
+	.sk-cube-grid .sk-cube2 {
+		-webkit-animation-delay: 0.2s;
+						animation-delay: 0.2s; }
+	.sk-cube-grid .sk-cube3 {
+		-webkit-animation-delay: 0s;
+						animation-delay: 0s; }
+	.sk-cube-grid .sk-cube4 {
+		-webkit-animation-delay: 0.2s;
+						animation-delay: 0.2s; }
+	.sk-cube-grid .sk-cube5 {
+		-webkit-animation-delay: 0.4s;
+						animation-delay: 0.4s; }
+	.sk-cube-grid .sk-cube6 {
+		-webkit-animation-delay: 0.2s;
+						animation-delay: 0.2s; }
+	.sk-cube-grid .sk-cube7 {
+		-webkit-animation-delay: 0s;
+						animation-delay: 0s; }
+	.sk-cube-grid .sk-cube8 {
+		-webkit-animation-delay: 0.2s;
+						animation-delay: 0.2s; }
+	.sk-cube-grid .sk-cube9 {
+		-webkit-animation-delay: 0s;
+						animation-delay: 0s; }
+
+	@-webkit-keyframes sk-cubeGridScaleDelay {
+		0%, 70%, 100% {
+			-webkit-transform: scale3D(1, 1, 1);
+							transform: scale3D(1, 1, 1);
+		} 35% {
+			-webkit-transform: scale3D(0, 0, 1);
+							transform: scale3D(0, 0, 1);
+		}
+	}
+
+	@keyframes sk-cubeGridScaleDelay {
+		0%, 70%, 100% {
+			-webkit-transform: scale3D(1, 1, 1);
+							transform: scale3D(1, 1, 1);
+		} 35% {
+			-webkit-transform: scale3D(0, 0, 1);
+							transform: scale3D(0, 0, 1);
+		}
+	}
+	</style>
+
+	<h2 class="advice">Use the menu on the right to navigate between </h2>
+	<!-- Loading animation cubes -->
+	<div class="loading">
+		<div class="sk-cube-grid">
+		  <div class="sk-cube sk-cube1"></div>
+		  <div class="sk-cube sk-cube2"></div>
+		  <div class="sk-cube sk-cube3"></div>
+		  <div class="sk-cube sk-cube4"></div>
+		  <div class="sk-cube sk-cube5"></div>
+		  <div class="sk-cube sk-cube6"></div>
+		  <div class="sk-cube sk-cube7"></div>
+		  <div class="sk-cube sk-cube8"></div>
+		  <div class="sk-cube sk-cube9"></div>
+		</div>
+		<h2>Loading banners</h2>
+	</div>
+
+	<div class="banners">
+
+	</div>
+	<div class="nav-wrapper">
+		<div class="close">
+			<div class="close-tooltip"><span>Close menu</span></div>
+			<i class="fa fa-caret-right" aria-hidden="true"></i>
+		</div>
+
+		<!-- Menu title -->
+		<h3>Client name</h3>
+			<div class="nav">
+				<!-- !!! IF YOU WANT TO HAVE SEVERAL DROPDOWNS IN THE MENU - COPY THE "nav-head" <p> AND THE "nav-lists" <div>
+					Remember to change "list" class number by +1 (for example "nav-head list1", "nav-head list2" etc.), as well as "nav-list" -->
+
+				<!-- FIRST MENU LIST ----------------------->
+				<!-- Title for each campaigns or country (example Hi-Fi klubben 1 campaign in 4 countries; 6-7 banner packages for each country) -->
+				<p class="nav-head list1">
+					<span class="caret">
+						<i class="fa fa-caret-right" aria-hidden="true"></i>
+					</span>
+					<!-- Menu name goes here -->
+					Menu name example
+				</p>
+				<div class="nav-lists nav-list1"> <!-- navigation between individual banner packages -->
+					<!-- Banner package name goes here -->
+					<a href="example">Banner examples</a> <!-- href name in <a> has to be EXACTLY THE SAME as the name of your folder with the banner package -->
+					<a href="banner-folder">empty example</a>
+					<a href="banner-folder2">another empty example</a>
+				</div>
+				<!-- FIRST MENU LIST END ------------------->
+
+				<!-- SECOND MENU LIST ------------------->
+					<!-- Title for each campaigns or country -->
+					<p class="nav-head list2">
+						<span class="caret">
+							<i class="fa fa-caret-right" aria-hidden="true"></i>
+						</span>
+						<!-- Menu name goes here -->
+						Menu name 2
+					</p>
+					<!-- navigation between individual banner packages -->
+					<div class="nav-lists nav-list2">
+						<a href="example">Example</a>
+					</div>
+				<!-- SECOND MENU LIST END ------------------->
+
+				<!-- DISABLED MENU LIST ------------------->
+				<!-- Title for each campaigns or country -->
+				<!-- You can make a campaign heading grey and inactive by adding a "disabled" class (example <p class="disabled nav-head") -->
+				<p class="nav-head list5 disabled">
+					<span class="caret">
+						<i class="fa fa-caret-right" aria-hidden="true"></i>
+					</span>
+					<!-- Menu name goes here -->
+					Disabled example
+				</p>
+				<!-- navigation between individual banner packages -->
+				<div class="nav-lists nav-list5">
+					<!-- href name in <a> has to be EXACTLY THE SAME as the name of your folder with the banner package -->
+					<a href="folder-name">Example</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Quisma Watermark -->
+			<!-- <script type="text/javascript" src="http://groupm-martech.com/inspiration/quisma_watermark.js"></script> -->
+			<img class="watermark" src="http://groupm-martech.com/inspiration/Quisma_logo_farve.svg" alt="" style="position: fixed; bottom: 5%; left: 50%; width: 400px; transform: matrix(1, 0, 0, 1, -200, 0); opacity: 0.09; filter: grayscale(0); z-index: 0;">
+
+		<!-- Google Analytics -->
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-99325873-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				// // temporarily open the menu
+				// $(".nav-head.list1, .nav-head.list2, .nav-head.list3").addClass('toggled');
+				// // switching the arrow depending on menu state
+				// $('.list1 .caret i, .list2 .caret i, .list3 .caret i').removeClass('fa-caret-right').addClass('fa-caret-down').css('color','#e1005d');
+				// // toggling the menu
+				// $('.nav-list1, .nav-list2, .nav-list3').slideDown();
+
+				// menu click functionality
+				$('.nav-head').on('click tap', function(){
+					// check if the menu is toggled or not
+					var toggled = $(this).hasClass('toggled');
+
+					if (!toggled){
+						// since we are listening for click events on all "buttons"
+						// - we target the classes dynamically to understand, which one will be changed in the future
+
+						// checking which class the element has
+						var getElementClass = this.className.substring(9);
+						var elementClass = '.'+getElementClass;
+
+						$(this).addClass('toggled');
+						// switching the arrow depending on menu state
+						$(elementClass+' .caret i').removeClass('fa-caret-right').addClass('fa-caret-down').css('color','#e1005d');
+						// toggling the menu
+						$('.nav-'+getElementClass).slideDown();
+					}
+					else {
+						$(this).removeClass('toggled');
+						// removing the "toggled" class from the element
+						var getElementClass = this.className.substring(9, 19);
+						var elementClass = '.'+getElementClass;
+						$(elementClass+' .caret i').removeClass('fa-caret-down').addClass('fa-caret-right').css('color','#000');
+						$('.nav-'+getElementClass).slideUp();
+					}
+
+					var currentNav = $(this).text();
+
+					// Send an event to Google Analytics
+					ga('send', {
+					  hitType: 'event',
+					  eventCategory: 'Banner Headings',
+					  eventAction: 'click',
+					  eventLabel: currentNav
+					});
+				});
+
+				// pre-create a random number and add it to the link to refresh the cache every time the user loads the page
+				var randomNumber = Math.random();
+				var nocache = "?nocache="+randomNumber;
+				// disable default behaviour of anchors
+				$('.nav-lists a').on('click tap', function(event){
+					event.preventDefault();
+					$('.nav-lists a').removeClass('active');
+					$(this).addClass('active');
+					$('.advice').hide();
+					var cacheCleared = $(this).hasClass('cache-cleared');
+					var href = $(this).attr('href');
+
+					if (!cacheCleared){
+						$(this).addClass('cache-cleared');
+						$('.loading').fadeIn(10);
+					}
+					// load iframes
+					var data;
+					$.ajax({
+						type: 'GET',
+						url: href+nocache,
+						cache: false,
+						success: function(response){
+							data = response;
+							$('.banners').html(data);
+							var iframes = $('iframe');
+							for (var i = 0; i < iframes.length; i++) {
+								var iframe = $(iframes[i]);
+								var iframeSrc = $(iframes[i]).attr('src');
+								var iframeSrcFixed = href+'/'+iframeSrc+nocache;
+								var iframeSrcValue = $(iframe).attr('src', iframeSrcFixed);
+							}
+							$('.loading').fadeOut(1000);
+						}
+					});
+
+					// add a scrollbar to the menu if there's not enough space
+					var maxNavigationHeight = $(window).height() - 84;
+					// this is in the onclick event to run it every time and check the window height (after inspecting the height becomes smaller and the window needs to be reloaded)
+					$('.nav').css('max-height', maxNavigationHeight);
+
+					// Send an event to Google Analytics
+					ga('send', {
+					  hitType: 'event',
+					  eventCategory: 'Banner Links',
+					  eventAction: 'click',
+					  eventLabel: href
+					});
+				});
+
+				// close the menu
+				$('.close').on('click tap', function(){
+					var closed = $(this).hasClass('closed');
+
+					if (!closed){
+						$(this).addClass('closed');
+						$('.close i').removeClass('fa-caret-right').addClass('fa-caret-left').css({'top':'0px','left':'2px'});
+						$('.close').css({'left':'-32px'});
+						$('.nav-wrapper').animate({'right':'-275px'});
+						$('.close-tooltip span').html('Open menu');
+					}
+					else {
+						$(this).removeClass('closed');
+						$('.close i').removeClass('fa-caret-left').addClass('fa-caret-right').css({'top':'1px','left':'5px'});
+						$('.close').css({'left':'-33px'});
+						$('.nav-wrapper').animate({'right':'0px'});
+						$('.close-tooltip span').html('Close menu');
+					}
+				});
+
+				// add a scrollbar to the menu if there's not enough space on the screen
+				var maxNavigationHeight = $(window).height() - 84;
+				$('.nav').css('max-height', maxNavigationHeight);
+
+				// disable the annoying "double-scroll" when scrolling through the menu
+				$('.nav').on('DOMMouseScroll mousewheel', function(ev) {
+				    var $this = $(this),
+				        scrollTop = this.scrollTop,
+				        scrollHeight = this.scrollHeight,
+				        height = $this.height(),
+				        delta = (ev.type == 'DOMMouseScroll' ?
+				            ev.originalEvent.detail * -40 :
+				            ev.originalEvent.wheelDelta),
+				        up = delta > 0;
+
+				    var prevent = function() {
+				        ev.stopPropagation();
+				        ev.preventDefault();
+				        ev.returnValue = false;
+				        return false;
+				    }
+
+				    if (!up && -delta > scrollHeight - height - scrollTop) {
+				        // Scrolling down, but this will take us past the bottom.
+				        $this.scrollTop(scrollHeight);
+				        return prevent();
+				    } else if (up && delta > scrollTop) {
+				        // Scrolling up, but this will take us past the top.
+				        $this.scrollTop(0);
+				        return prevent();
+				    }
+				});
+			});
+		</script>
+		<!-- Quisma logo watermark -->
+		<img class="watermark" src="http://groupm-martech.com/inspiration/Quisma_logo_farve.svg" alt="Quisma logo" style="position: fixed; bottom: 5%; left: 50%; width: 400px; transform: matrix(1, 0, 0, 1, -200, 0); opacity: 0.09; filter: grayscale(0); z-index: 0;">
+		<!-- <script type="text/javascript" src="http://groupm-martech.com/Inspiration/quisma_watermark.js"></script> -->
+</body>
+</html>

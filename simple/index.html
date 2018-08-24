@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Preview page title goes here -->
+	<title>Preview</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+</head>
+<body>
+<!-- styling for all banners in the preview goes here -->
+<!-- Just add a new class size if a size is missing -->
+	<style type="text/css">
+		body {
+			margin: 5px;
+			background: #eaeaea;
+			font-family: Verdana,sans-serif;
+		}
+		iframe {
+			border: none;
+			position: relative;
+			z-index: 1;
+		}
+		.back {
+			position: fixed;
+			top: 5px;
+			right: 5px;
+			width: 100px;
+			height: 40px;
+			color: #565656;
+			font-size: 18px;
+			font-weight: bold;
+			line-height: 39px;
+			border: 2px solid #eaeaea;
+			text-align: center;
+			text-decoration: none;
+			cursor: pointer;
+			-webkit-transition: all 0.4s ease;
+			transition: all 0.4s ease;
+		}
+		.back:hover {
+			border: 2px solid #e1005d;
+			background: #e1005d;
+			color: #FFF;
+			-webkit-transition: all 0.4s ease;
+			transition: all 0.4s ease;
+		}
+		.heading {
+			font-weight: bold;
+			border: 2px solid transparent;
+			margin-bottom: 5px;
+			padding: 2px 5px 5px;
+			display: inline-block;
+		}
+		.heading p {
+			color: #555;
+			margin: 0 0 5px;
+			border-bottom: 2px solid transparent;
+		}
+		.title p {
+			font-size: 18px;
+			font-weight: bold;
+			color: #555;
+			padding: 0 0 5px;
+			margin: 5px 7px;
+			border-bottom: 2px solid #ccc;
+		}
+		.clear {
+			display: block;
+		}
+		.b980x400 {
+			display: block;
+			width: 980px;
+			height: 400px;
+		}
+		.b980x240 {
+			display: block;
+			width: 980px;
+			height: 240px;
+		}
+		.b980x150 {
+			display: block;
+			width: 980px;
+			height: 150px;
+		}
+		.b960x180 {
+			display: block;
+			width: 960px;
+			height: 180px;
+		}
+		.b930x180 {
+			display: block;
+			width: 930px;
+			height: 180px;
+		}
+		.b930x600 {
+			display: block;
+			width: 930px;
+			height: 600px;
+		}
+		.b960x180 {
+			display: block;
+			width: 960px;
+			height: 180px;
+		}
+		.b800x435 {
+			display: block;
+			width: 800px;
+			height: 435px;
+		}
+		.b800x250 {
+			display: block;
+			width: 800px;
+			height: 250px;
+		}
+		.b728x90 {
+			display: block;
+			width: 728px;
+			height: 90px;
+		}
+		.b630x920 {
+			display: block;
+			width: 630px;
+			height: 920px;
+		}
+		.b580x400 {
+			display: block;
+			width: 580px;
+			height: 400px;
+		}
+		.b468x400 {
+			display: block;
+			width: 468px;
+			height: 400px;
+		}
+		.b320x480 {
+			display: block;
+			width: 320px;
+			height: 480px;
+		}
+		.b320x320 {
+			display: block;
+			width: 320px;
+			height: 320px;
+		}
+		.b320x250 {
+			display: block;
+			width: 320px;
+			height: 250px;
+		}
+		.b320x160 {
+			display: block;
+			width: 320px;
+			height: 160px;
+		}
+		.b320x50 {
+			display: block;
+			width: 320px;
+			height: 50px;
+		}
+		.b300x600 {
+			display: block;
+			width: 300px;
+			height: 600px;
+		}
+		.b300x430 {
+			display: block;
+			width: 300px;
+			height: 430px;
+		}
+		.b300x300 {
+			display: block;
+			width: 300px;
+			height: 300px;
+		}
+		.b300x250 {
+			display: block;
+			width: 300px;
+			height: 250px;
+		}
+		.b300x150 {
+			display: block;
+			width: 300px;
+			height: 150px;
+		}
+		.b250x800 {
+			display: block;
+			width: 250px;
+			height: 800px;
+		}
+		.b250x720 {
+			display: block;
+			width: 250px;
+			height: 720px;
+		}
+		.b250x500 {
+			display: block;
+			width: 250px;
+			height: 500px;
+		}
+		.b250x360 {
+			display: block;
+			width: 250px;
+			height: 360px;
+		}
+		.b215x500 {
+			display: block;
+			width: 215px;
+			height: 500px;
+		}
+		.b180x500 {
+			display: block;
+			width: 180px;
+			height: 500px;
+		}
+		.b160x600 {
+			display: block;
+			width: 160px;
+			height: 600px;
+		}
+		.footer {
+			font-family: Verdana,sans-serif;
+			text-transform: none;
+			position: fixed;
+			right: 15px;
+			bottom: 12px;
+		}
+		.footer a {
+			position: relative;
+			display: block;
+			height: 50px;
+		}
+		.footer img {
+			height: 70px;
+		}
+		#footer-text {
+			position: absolute;
+		    left: -88px;
+		    color: #e1005d;
+		    padding: 0 15px;
+		    border: 2px solid;
+		    font-weight: bold;
+		    line-height: 46px;
+		    cursor: default;
+		    background: #FFF;
+		    z-index: 1;
+		}
+	</style>
+
+	<!-- Banners go here -->
+  <!-- class "heading" creates a header for the banner -->
+	<div class="heading">
+		<p>930x180</p>
+		<iframe class="b930x180" src="930x180/index.html" scrolling="no"></iframe>
+	</div>
+  <!-- class "clear" moves the next banners to a new line -->
+	<div class="clear"></div> <!-- Copy this line of code and paste it before the banners you want on a new line -->
+	<div class="heading">
+		<p>160x600</p>
+		<iframe class="b160x600" src="160x600/index.html" scrolling="no"></iframe>
+	</div>
+	<div class="heading">
+		<p>320x320</p>
+		<iframe class="b320x320" src="320x320/index.html" scrolling="no"></iframe>
+	</div>
+	<div class="heading">
+		<p>300x250</p>
+		<iframe class="b300x250" src="300x250/index.html" scrolling="no"></iframe>
+	</div>
+<!-- Add client logo here -->
+	<div class="footer">
+		<img class="partnership" src="logo.png" alt="logo">
+	</div>
+<!-- Quisma Watermark -->
+	<script type="text/javascript" src="http://groupm-martech.com/Inspiration/quisma_watermark.js"></script>
+
+<!-- Enable Google Analytics on this page to see who is viewing your preview, geolocation of the viewer and device information -->
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '<Your Google Analytics ID here>', 'auto'); //example ID 'UA-99325873-1'
+  ga('send', 'pageview');
+
+</script>
+	</div>
+</body>
+</html>

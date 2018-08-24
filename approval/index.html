@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forsvaret banner preview</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+	<script src="https://use.fontawesome.com/b11164cf3c.js"></script>
+	<meta charset="utf-8">
+</head>
+<body>
+	<style type="text/css">
+		body {
+			margin: 30px 5px 5px 5px;
+			font-family: Verdana,sans-serif;
+			background: #eaeaea;
+		}
+		iframe {
+			border: none;
+		}
+		.heading {
+			position: relative;
+			font-weight: bold;
+			border: 2px solid transparent;
+			padding: 2px 5px 5px;
+			display: block;
+			width: 930px;
+			margin: 0 auto;
+		}
+		.heading p {
+			color: #555;
+			margin: 0 0 5px;
+			border-bottom: 2px solid transparent;
+		}
+		.heading span {
+			position: absolute;
+			cursor: pointer;
+			color: #555;
+			top: 2px;
+			right: 4px;
+			-webkit-transition: all 0.4s ease;
+			transition: all 0.4s ease;
+		}
+		.heading span:hover {
+			color: #e1005d;
+			-webkit-transition: all 0.4s ease;
+			transition: all 0.4s ease;
+		}
+		.clear {
+			display: block;
+		}
+		.b960x180 {
+			display: block;
+			width: 960px;
+			height: 180px;
+		}
+		.b930x180 {
+			display: block;
+			width: 930px;
+			height: 180px;
+		}
+		.b728x90 {
+			display: block;
+			width: 728px;
+			height: 90px;
+		}
+		.b320x160 {
+			display: block;
+			width: 320px;
+			height: 160px;
+		}
+		.b320x50 {
+			display: block;
+			width: 320px;
+			height: 50px;
+		}
+		.b300x250 {
+			display: block;
+			width: 300px;
+			height: 250px;
+		}
+		.b320x320 {
+			display: block;
+			width: 320px;
+			height: 320px;
+		}
+		.b160x600 {
+			display: block;
+			width: 160px;
+			height: 600px;
+		}
+		.b300x600 {
+			display: block;
+			width: 300px;
+			height: 600px;
+		}
+		.header {
+			position: relative;
+			display: block;
+			margin: 10px auto 15px;
+			text-align: center;
+		}
+		.footer {
+			font-family: Verdana,sans-serif;
+			text-transform: none;
+			position: fixed;
+			right: 0;
+			bottom: 0;
+		}
+		.footer a {
+			position: relative;
+			display: block;
+			height: 50px;
+		}
+		.footer img {
+			height: 50px;
+		}
+		#footer-text {
+			position: absolute;
+		    left: -88px;
+		    color: #e1005d;
+		    padding: 0 15px;
+		    border: 2px solid;
+		    font-weight: bold;
+		    line-height: 46px;
+		    cursor: default;
+		    background: #FFF;
+		    z-index: 1;
+		}
+	</style>
+
+	<div class="header">
+		<img class="partnership" src="forsvaret.png" alt="logo">
+	</div>
+
+	<div class="heading">
+		<p>930x180</p>
+		<span class="refresh banner-1"><i class="fa fa-refresh" aria-hidden="true"></i> Reload banner</span>
+		<iframe id="banner-1" class="b930x180" src="930x180" scrolling="no"></iframe>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".refresh").on('click tap', function(){
+				var banner1 = $(this).hasClass('banner-1');
+				// var banner2 = $(this).hasClass('banner-2');
+				// var banner3 = $(this).hasClass('banner-3');
+				if (banner1){
+					$("#banner-1")[0].contentWindow.location.reload(true);
+				}
+				// else if (banner2){
+				// 	$("#banner-2")[0].contentWindow.location.reload(true);
+				// }
+				// else if (banner3){
+				// 	$("#banner-3")[0].contentWindow.location.reload(true);
+				// }
+			});
+		});
+	</script>
+	<script type="text/javascript" src="https://mediacom.digital/mediacom-logo/watermark.js"></script>
+	
+</body>
+</html>

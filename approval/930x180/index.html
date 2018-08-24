@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!--
+ * @Author: Edita Narkuniene | Adform.com 2014
+ * @Description: In this example we demonstrate how to create a standard banner.
+ * Main banner code is placed in StandardAd.js (clickTAG).
+ * CSS styles in screen.css
+ *
+ * For more information about our Video components can be found in the online documentation
+ * http://test.adform.com/testpage/banner-specifications/html5-banner/html5-video-player-component/
+ * or contact technical@adform.com
+-->
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		document.write('<script src="'+ (window.API_URL || 'https://s1.adform.net/banners/scripts/rmb/Adform.DHTML.js?bv='+ Math.random()) +'"><\/script>');
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+	<div id="banner">
+		<div class="wrapper">
+			<img class="bg" src="assets/bg.jpg" alt="bg">
+			<div class="box"></div>
+			<p class="text text1">Har du en basisuddannelse<br>i Forsvaret?</p>
+			<p class="text text2">Søg ind til Militærpolitiet<br>og bliv en del af en unik enhed.</p>
+			<p class="disclaimer">Ansøgningsfrist 2. april.</p>
+			<div class="cta">
+				<span class="ctext1">Læs mere</span>
+				<span class="ctext2">Ansøg nu</span>
+			</div>
+			<img class="logo" src="assets/logo1.png" alt="logo">
+		</div>
+	</div>
+	<!-- GSAP -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+	<script type="text/javascript" src="scripts/script.js"></script>
+</body>
+</html>

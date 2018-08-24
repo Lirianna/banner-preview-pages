@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<title>DCO 300x250px</title>
+	<script>
+		var components = [
+			'Products'
+		];
+		document.write('<script src="'+ (window.API_URL || 'https://s1.adform.net/banners/scripts/rmb/Adform.DHTML.js?bv='+ Math.random()) +'"><\/script>');
+	</script>
+    <link rel="stylesheet" href="//s1.adform.net/Banners/Scripts/assets/css/adform.reset.v1.css">
+    <link rel="stylesheet" href="//s1.adform.net/Banners/Scripts/assets/css/adform.base.v1.css">
+	<link rel="stylesheet" href="styles/custom.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body class="Adform">
+
+    <div id="banner" class="horizontal">
+
+        <!-- Banner contents -->
+		<div id="wrapper" class="wrapper">
+
+		    <div class="scroll-mask" id="mask">
+		        <ul class="scroll-container" id="productsContainer">
+		            <li class="scroll-item"></li>
+		        </ul>
+		    </div>
+
+		</div>
+		<!-- Banner contents -->
+	</div>
+
+	<!-- Dynamic template for single Product Item -->
+	<script type="text/mustache" id="item">
+		{{#products}}
+		    <div class="product">
+		    	<a href="{{$link}}" target="{{target}}" class="product-link">
+		    		<p class="tekst1 txt">{{Tekst1}}<br><span class="tekst2">Knaldlækker telefon fedt</span><br><span class="product_name">{{product_name}}</span></p>
+		        {{#product_image}}
+		            <div class="product-photo">
+		            	<img src="{{product_image}}" alt="{{product_id}}">
+		            </div>
+				{{/product_image}}
+
+				<div class="pop">
+					<p class="product_price">{{product_price}}<span class="md"><img src="assets/md.png"></span></p>
+					<p class="contractlength">AFDRAG I {{ContractLenght}} MDR.</p>
+					<p class="kun">KUN:</p>
+					<img class="blurp" src="assets/blurp.png">
+				</div>
+
+				<div class="circle">
+					<p class="spartext">SPAR<br><span class="spar">{{Spar}}</span></p>
+				</div>
+				<p class="betingelser">{{Betingelser}}</p>
+
+				<div class="rectangle">
+					<p>SE MERE</p>
+				</div>
+				</a>
+			</div>
+		{{/products}}
+	</script>
+
+    <!-- Components -->
+	<script src="scripts/custom.js"></script>
+	<!-- Components -->
+
+	<!--Logo area click-->
+	<script>
+		var clickArea = document.getElementById('logoClick');
+		clickTAGvalue = dhtml.getVar('clickTAG', 'https://www.adform.com'); //banner will receive clickTAG value - if not defined, banner will land to adform.com
+		landingpagetarget = dhtml.getVar('landingPageTarget', '_blank'); //landingPageTarget variable enables to change target from Adform system.
+
+		clickArea.onclick = function() {
+		    window.open(clickTAGvalue,landingpagetarget); //when clickArea is clicked it will open new window directing to clickTAG value
+		}
+	</script>
+	<script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.18.0_499ba64a23378545748ff12d372e59e9_min.js"></script>
+    <script src="gsap.js"></script>
+
+</body>
+</html>

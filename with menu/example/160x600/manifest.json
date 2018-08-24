@@ -1,0 +1,17 @@
+{
+    "version": "1.0",
+    "uniqueId": "bu0b81626868140f56f6fabd216a6b1127",
+    "title": "DCO 160x600_main_asset",
+    "description": "",
+    "width": 160,
+    "height": 600,
+    "events": {
+        "enabled": 0,
+        "list": {
+        }
+    },
+    "clicktags": {
+        "clickTAG": "http:\/\/www.adform.com\/"
+    },
+    "source": "index.html"
+}
